@@ -8,14 +8,18 @@ RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y \
     g++ \ 
     graphviz git cmake ninja-build \
     python3 python3-venv tree \
-    xz-utils zip locales gpg
+    xz-utils zip locales gpg \
+    lsb-release software-properties-common gnupg \
+    openssh-server ssh sudo
+
+# Start ssh server
+RUN mkdir -p /run/sshd
  
 # Install Clang/LLVM
-RUN wget https://github.com/llvm/llvm-project/releases/download/llvmorg-16.0.4/clang+llvm-16.0.4-x86_64-linux-gnu-ubuntu-22.04.tar.xz
-RUN mkdir /usr/lib/llvm-16
-RUN tar -xf clang+llvm-16.0.4-x86_64-linux-gnu-ubuntu-22.04.tar.xz -C /usr/lib/llvm-16 --strip-components=1
+RUN wget https://apt.llvm.org/llvm.sh
+RUN chmod +x llvm.sh
+RUN ./llvm.sh 17
 
-ENV PATH /usr/lib/llvm-16/bin:$PATH
 ENV CC clang
 ENV CXX clang++
    
@@ -47,7 +51,6 @@ RUN useradd -ms /bin/bash ${USER}
 # Install oh my zsh
 USER ${USER}
 RUN sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
-RUN ln -s /host_home/.ssh ~/.ssh
 
 # Do not bind ~/ between host and container. Some tools only work in specific
 # OSes
