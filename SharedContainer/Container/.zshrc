@@ -40,3 +40,14 @@ zle -N git-search-widget
 bindkey -M emacs '^W' git-search-widget
 bindkey -M vicmd '^W' git-search-widget
 bindkey -M viins '^W' git-search-widget
+
+# Show human friendly numbers and colors
+alias df='df -h'
+alias du='du -h -d 2'
+
+# Moving around
+alias cdb='cd -'
+alias cls='clear;ls'
+
+alias -g G='| rg'
+

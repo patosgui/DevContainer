@@ -19,5 +19,6 @@ services:
     user: root
     ports:
       - "2999:22"
+    privileged: true # Allow debugging
     command: /usr/sbin/sshd -D
     #command: /bin/sh -c "while sleep 1000; do :; done"

@@ -7,13 +7,18 @@ RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y \
     gnupg2 lld zip \
     g++ \ 
     graphviz git cmake ninja-build \
-    python3 python3-venv tree \
+    python3 python3-venv pip tree \
     xz-utils zip locales gpg \
     lsb-release software-properties-common gnupg \
-    openssh-server ssh sudo
+    openssh-server ssh sudo curl htop gzip cmake-curses-gui
 
 # Start ssh server
 RUN mkdir -p /run/sshd
+
+# Install lazygit
+RUN LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*') && curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+RUN tar xf lazygit.tar.gz lazygit
+RUN install lazygit /usr/local/bin
  
 # Install Clang/LLVM
 RUN wget https://apt.llvm.org/llvm.sh
@@ -24,7 +29,7 @@ ENV CC clang
 ENV CXX clang++
    
 # Developer tools
-RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y vim zsh ripgrep bat fd-find fzf zoxide duf
+RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y vim zsh ripgrep bat fd-find fzf zoxide duf direnv
 
 RUN locale-gen en_US.UTF-8
 ENV LANG en_US.UTF-8
