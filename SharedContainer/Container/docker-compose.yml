@@ -8,7 +8,7 @@ services:
         - USER=${USER}
         # Configure git
         - GIT_NAME=Jose Lopes
-        - GIT_EMAIL=pedro.fraiao2@gmail.com
+        - GIT_EMAIL=lopes.joseps@gmail.com
     volumes:
       - type: bind
         source: $HOME/code
@@ -16,9 +16,13 @@ services:
       - type: bind
         source: $HOME/.ssh
         target: /home/${USER}/.ssh
+      - vscode-server:/home/${USER}/.vscode-server
     user: root
     ports:
       - "2999:22"
     privileged: true # Allow debugging
     command: /usr/sbin/sshd -D
     #command: /bin/sh -c "while sleep 1000; do :; done"
+
+volumes:
+  vscode-server:

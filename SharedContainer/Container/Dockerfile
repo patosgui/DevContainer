@@ -62,6 +62,10 @@ RUN sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh
 COPY --chown=${USER} .gitconfig /home/${USER}
 COPY --chown=${USER} .zshrc /home/${USER}
 
+# Path to persistent vscode-server
+# Required to keep the proper permissions (so that user can access it)
+RUN  mkdir -p /home/${USER}/.vscode-server
+
 # This needs to be here because broot --install modifies ~/.zshrc
 RUN broot --install
 # Set "br" as installed
