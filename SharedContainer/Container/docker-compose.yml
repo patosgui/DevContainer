@@ -17,9 +17,11 @@ services:
         source: $HOME/.ssh
         target: /home/${USER}/.ssh
       - vscode-server:/home/${USER}/.vscode-server
+      - zsh-history:/home/${USER}/.zsh_history
     user: root
     ports:
       - "2999:22"
+      - "3001:3001"
     privileged: true # Allow debugging
     command: /usr/sbin/sshd -D
     #command: /bin/sh -c "while sleep 1000; do :; done"

@@ -12,6 +12,9 @@ RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y \
     lsb-release software-properties-common gnupg \
     openssh-server ssh sudo curl htop gzip cmake-curses-gui
 
+RUN add-apt-repository -y ppa:deadsnakes/ppa
+RUN DEBIAN_FRONTEND="noninteractive" apt install -y python3.12 python3.12-venv
+
 # Start ssh server
 RUN mkdir -p /run/sshd
 

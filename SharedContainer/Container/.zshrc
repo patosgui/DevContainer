@@ -3,7 +3,7 @@ export ZSH="${HOME}/.oh-my-zsh"
 
 ZSH_THEME="robbyrussell"
 
-plugins=(git vi-mode history dirhistory)
+plugins=(git vi-mode history dirhistory direnv)
 
 source $ZSH/oh-my-zsh.sh
 
