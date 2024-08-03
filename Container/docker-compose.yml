@@ -21,10 +21,10 @@ services:
     user: root
     ports:
       - "2999:22"
-      - "3001:3001"
     privileged: true # Allow debugging
     command: /usr/sbin/sshd -D
     #command: /bin/sh -c "while sleep 1000; do :; done"
 
 volumes:
   vscode-server:
+  zsh-history:

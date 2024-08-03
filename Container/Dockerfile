@@ -49,6 +49,11 @@ RUN wget https://dystroy.org/broot/download/x86_64-linux/broot
 RUN chmod o+x ./broot
 RUN cp ./broot /bin
 
+# Install starship as a theme for zsh
+RUN curl -sS https://starship.rs/install.sh -o ~/install.sh
+RUN chmod +x ~/install.sh
+RUN ~/install.sh -f
+
 ARG USER
 ARG GIT_NAME
 ARG GIT_EMAIL
@@ -64,6 +69,7 @@ RUN sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh
 # OSes
 COPY --chown=${USER} .gitconfig /home/${USER}
 COPY --chown=${USER} .zshrc /home/${USER}
+COPY --chown=${USER} starship.toml /home/${USER}
 
 # Path to persistent vscode-server
 # Required to keep the proper permissions (so that user can access it)

@@ -3,6 +3,7 @@ export ZSH="${HOME}/.oh-my-zsh"
 
 ZSH_THEME="robbyrussell"
 
+# add fzf after key-bindings missing file bug is fixes
 plugins=(git vi-mode history dirhistory direnv)
 
 source $ZSH/oh-my-zsh.sh
@@ -18,6 +19,10 @@ znap source marlonrichert/zsh-autocomplete &> /dev/null
 
 # Enable zoxide (z) integration with zsh
 eval "$(zoxide init zsh)" 
+
+# Enable starship # Installed with curl -sS https://starship.rs/install.sh | sh
+export STARSHIP_CONFIG=~/starship.toml
+eval "$(starship init zsh)"
 
 git-search() {
     git rev-parse HEAD > /dev/null 2>&1 || return
@@ -51,3 +56,8 @@ alias cls='clear;ls'
 
 alias -g G='| rg'
 
+# zoxide
+alias cd="z"
+
+#Default editor
+export EDITOR=vim
