@@ -44,6 +44,10 @@ RUN mkdir -p ~/delta
 RUN wget -qO- https://github.com/dandavison/delta/releases/download/0.16.5/delta-0.16.5-x86_64-unknown-linux-gnu.tar.gz | tar xvz -C ~/delta --strip-components=1
 RUN cp ~/delta/delta /bin
 
+# Install neovim
+RUN mkdir -p /usr/neovim
+RUN wget -qO- https://github.com/neovim/neovim/releases/download/v0.10.1/nvim-linux64.tar.gz | tar xvz -C /usr/neovim --strip-components=1
+
 # Install broot in /bin
 RUN wget https://dystroy.org/broot/download/x86_64-linux/broot
 RUN chmod o+x ./broot
@@ -69,7 +73,9 @@ RUN sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh
 # OSes
 COPY --chown=${USER} .gitconfig /home/${USER}
 COPY --chown=${USER} .zshrc /home/${USER}
-COPY --chown=${USER} starship.toml /home/${USER}
+
+RUN  mkdir -p /home/${USER}/.config
+COPY --chown=${USER} config/ /home/${USER}/.config
 
 # Path to persistent vscode-server
 # Required to keep the proper permissions (so that user can access it)

@@ -21,7 +21,7 @@ znap source marlonrichert/zsh-autocomplete &> /dev/null
 eval "$(zoxide init zsh)" 
 
 # Enable starship # Installed with curl -sS https://starship.rs/install.sh | sh
-export STARSHIP_CONFIG=~/starship.toml
+# export STARSHIP_CONFIG=~/starship.toml
 eval "$(starship init zsh)"
 
 git-search() {
@@ -61,3 +61,6 @@ alias cd="z"
 
 #Default editor
 export EDITOR=vim
+
+# Add neovim 0.10 to path
+export PATH="/usr/neovim/bin/:$PATH"
