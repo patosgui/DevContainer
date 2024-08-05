@@ -18,7 +18,9 @@ services:
         target: /home/${USER}/.ssh
       - vscode-server:/home/${USER}/.vscode-server
       - zsh-history:/home/${USER}/.zsh_history
+      - home_local:/home/${USER}/.local
     user: root
+    container_name: developer_machine
     ports:
       - "2999:22"
     privileged: true # Allow debugging
@@ -28,3 +30,4 @@ services:
 volumes:
   vscode-server:
   zsh-history:
+  home_local:

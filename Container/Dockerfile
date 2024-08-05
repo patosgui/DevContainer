@@ -28,8 +28,8 @@ RUN wget https://apt.llvm.org/llvm.sh
 RUN chmod +x llvm.sh
 RUN ./llvm.sh 17
 
-ENV CC clang
-ENV CXX clang++
+ENV CC clang-17
+ENV CXX clang++-17
    
 # Developer tools
 RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y vim zsh ripgrep bat fd-find fzf zoxide duf direnv

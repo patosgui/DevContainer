@@ -59,7 +59,10 @@ alias -g G='| rg'
 # zoxide
 alias cd="z"
 
-#Default editor
+# Execute a command on the developer docker
+alias dexec="docker exec --user pedro -it developer_machine"
+
+# Default editor
 export EDITOR=vim
 
 # Add neovim 0.10 to path
